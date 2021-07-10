@@ -17,7 +17,7 @@ avec un service AMQP - Advanced Message Queuing Protocol.
 ## SERVICES TIERS NÉCESSAIRES
 
 ● Un service web (Par exemple: PHP builtin server)
-● Une base de données SQL (Par exemple: MySQL ou MariaDB)
+● Une base de données SQL (Par exemple: MySQL ou MariaDB) :solution retenue : sqlite 3
 ● Une instance de broker AMQP (Par exemple: RabbitMQ)
 
 # CLASSES PHP À DÉVELOPPER
