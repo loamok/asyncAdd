@@ -8,11 +8,9 @@ use App\Repository\AdditionRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
-use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final class AdditionMessageHandler implements MessageHandlerInterface {
-    use HandleTrait;
     
     protected $em;
     protected $aRep;
