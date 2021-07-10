@@ -1,0 +1,7 @@
+version: '3'
+services:
+  rabbitmq:
+    build: ./docker/rabbitmq
+    environment:
+        RABBITMQ_DEFAULT_USER: guest
+        RABBITMQ_DEFAULT_PASS: guest

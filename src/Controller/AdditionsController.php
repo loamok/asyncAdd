@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\DTO\Addition as Addition2;
 use App\Entity\Addition;
+use App\Form\AdditionType;
+use App\Message\AdditionMessage;
 use App\Repository\AdditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdditionsController extends AbstractController {
@@ -15,13 +18,13 @@ class AdditionsController extends AbstractController {
     /**
      * @Route("/additions", name="additions")
      */
-    public function index(Request $request): Response {
+    public function index(Request $request, MessageBusInterface $bus): Response {
         /* @var $aRep AdditionRepository */
         $aRep = $this->getDoctrine()->getRepository(Addition::class);
         $last5Additions = $aRep->findBy([], ['id' => "DESC"], 5);
         
         $add = new Addition2();
-        $form = $this->createForm(\App\Form\AdditionType::class, $add);
+        $form = $this->createForm(AdditionType::class, $add);
         
         $form->handleRequest($request);
         
@@ -29,6 +32,9 @@ class AdditionsController extends AbstractController {
             // déclenche le calcul avec rabbitMq
             $toCalc = $form->getData();
 //            dump($toCalc);
+            $addMessage = new AdditionMessage($toCalc->a, $toCalc->b);
+            $bus->dispatch($addMessage);
+            return $this->redirectToRoute('additions');
         }
         
         return $this->render('additions/index.html.twig', [

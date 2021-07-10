@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Addition {
     
     /**
+     * @Assert\PositiveOrZero(
+     *      message="The first number must be more or equal to zero."
+     * )
      * @Assert\NotNull(
      *      message="The first number must not be null."
      * )
@@ -24,6 +27,9 @@ class Addition {
     public $a = 0;
     
     /**
+     * @Assert\PositiveOrZero(
+     *      message="The first number must be more or equal to zero."
+     * )
      * @Assert\NotNull(
      *      message="The second number must not be null."
      * )

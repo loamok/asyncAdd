@@ -2,7 +2,9 @@
 # Candidature Développeur PHP
 ## chronométrage : 
 - projet initié le 10/07/2021 à 09:45
-- dernier commit le 10/07/2021 à 11:00
+- pause de 12h à 14h
+- dernier commit le 10/07/2021 à 14:40
+
 ## VUE D'ENSEMBLE
 
 Développer un projet sous Symfony 5 permettant de faire des additions de façon asynchrone
@@ -12,7 +14,8 @@ avec un service AMQP - Advanced Message Queuing Protocol.
 
 1. L’utilisateur affiche une page contenant un formulaire permettant de saisir 2 valeurs de nombres entiers positifs et un bouton “submit” pour transmettre les données.
 2. A la soumission, un message AMQP contenant les 2 valeurs est publié sur le broker AMQP.
-3. Un consommateur AMQP récupère ce message, il effectue l’addition mathématique des 2 valeurs, insère le résultat dans la base de données puis retourne un signal de confirmation “ACK” au broker AMQP.
+3. Un consommateur AMQP récupère ce message, il effectue l’addition mathématique des 2 valeurs, insère le résultat dans la base de données puis retourne un signal 
+4. --confirmation “ACK” au broker AMQP.-- : Les ack sont envoyés automatiquement par Symfony messenger en 5.3.
 
 ## SERVICES TIERS NÉCESSAIRES
 
